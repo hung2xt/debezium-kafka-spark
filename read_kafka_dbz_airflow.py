@@ -12,16 +12,7 @@ import pyspark.sql.functions as F
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
 
-project_id = "sawyer-work-1804"
-private_key_id = "65e64232ab965211722e3513fdcded158c559ba6"
-private_key = '-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDqj61YIThkbxRf\nLzrhMLOD1wc33iaRaNb6Mm5qHO9xRIGZC1ronS39YYRTDoseaQb7kkEWIxiJfPiw\nVszJEfdYmPRtGgy3PkgM9zW1SWmghDDiz7XQZJEgvOPQwUZsXvdAYFhHh3oSuWsZ\n+UjrgiLXBfr3b4GMszH0Zaiazyyax6ybhCo9zyKcpRscT5v+IpeYG/6iYx21g51Y\n2fACDvoLbrOspG0pCHtP+s/kzVTjHz+QN76WlZMzF4FoAaeO953jOHGEBShgv854\nOZUd0MQJDEgtv40CtYdIBlh4eE8hpVNhZfZyJPyu7NntFMxiUCbygnFdoyNDl7VT\nDR+sPFJ9AgMBAAECggEAC+v/kIInvpsSuv/Ii1eRWDsep81Hwo5ElvTnPcd4uBYW\nTDQSi84pXz6MnjgYBBSsgS7e1gQ0pBBRB41x3Spnmv4zNjRjvxCQUvBhr3QqxTjS\nz0RlZlEmOza+kYaxUKLHCGOdOQ1+u+Lmuaw885Nqt+ka52aofAFDobtlBXFQQBGb\nHhLKXXB+3bdC+PyfCBdAH8z7EThv9LS15pzrVZrjYh0IjahIESZ75vKkvoo8YUYI\nhbOLoPbacnPezmxFaJJo4EGU2LrwNRocGUwsso9fGS7B+QJEaE1KKZP+NRDbjRAR\n0nUxjFxRokQ/jBX4uHaxVKWPuNt9ua/aosm5rl6GlQKBgQD7tVKyKbGdWzT2IGMK\n1aiGJsZ/hq7VaBSKJL3E6rbhsv+xZxtdhu/1EzJQ2XZXt6hi5TvMxIFgkca4siGb\nAOn4b0c2q1ho/I4P7mGyEX8uzJ69sDtMKuwliew9VNBDAicAaGYpdiFUtiOkDiPk\necP7/jetUV14UPaWFH02quW8ywKBgQDuj4Jcxx5XqkG/q/NUKIgxVUY2d0Zx3o86\n6X+ysqYGl5NPOd3Gb2gkD9vPa1Trh/bqhaDFSHk6mXO7i8Db/s/SSMrLicMxl9DQ\n87oRaU51TJQIZQ8E7hj3dsULnDwsj7qpxuOr+LhDU0CAeGDR5Q6ubM6eW3308b1N\ndgXYPmvM1wKBgQCGoc/ft+lmz1gepegT7YA8cRUPNQzi3M7PrSNL5nd3dXTKgOnk\nNr62iVQKZqaj+Ho6m35G4nyJGLAALldHP0/mMC8ZEMEzNpMN9mWPB0jN0Wi+8Tpm\nXTb+RS11CJ50mPwffbfXSXY+h0W9BEsyc+beLHW/YJvsNPIQCFmJGhPTzQKBgQC2\ngNFxWt+Kn3THRqvTsWJno14gouUgjewzXJjVw7giCOmoTZOtkGMyW3OE3g7MVWr/\nhZU1+DjOLMEONF8prmmc7RU/2zeaBBO7Fwo88bwVHq2NMorn8aLmBlW+iRq72IUs\nBzz7vj5xOwp4fh9L1BmENTdojIPy1NFGpkjYYwCjZwKBgQCr2pJ+AMN6yoSt0q54\naaVPme88W7MhJHpW9v3sy10xxtiKDJaaf+RrDaYxMnfnkQMtQL/vnP0Uxljd+x7n\noyXMF5SkYbUkDtLmTtDbAOMYJpjEJR+nD5Gb4alvHUUs51mN/yyBn9Kh5DBLOEI2\nIj06o7LA5RBcbmYkYZs/JdT5/g==\n-----END PRIVATE KEY-----\n'
-client_id = '113095879717410609645'
-client_email = 'terraform-gcp@sawyer-work-1804.iam.gserviceaccount.com'
-auth_uri = "https://accounts.google.com/o/oauth2/auth"
-token_uri = 'https://oauth2.googleapis.com/token'
-auth_provider_x509_cert_url = 'https://www.googleapis.com/oauth2/v1/certs'
-client_x509_cert_url = 'https://www.googleapis.com/robot/v1/metadata/x509/terraform-gcp%40sawyer-work-1804.iam.gserviceaccount.com'
-path = "/Users/hungnp14/Desktop/DE/Terraform/dataproc-terraform/credentials/sawyer-work-1804-65e64232ab96.json"
+
 # spark = SparkSession.builder \
 #         .appName("PythonSparkStreamingKafka") \
 #         .config("fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")\
