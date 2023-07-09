@@ -1,7 +1,7 @@
 ## debezium-kafka-spark
 ##### Table of Contents  
 - [Step 1 - Resource requirements](#step-1-resource-requirements)
-- [Step 6 — Operation](#step-6-operation)
+- [Step 6 - Operation](#step-6-operation)
 ### Step 1 - Resource requirements
 
 1. Login to VM Instance
@@ -140,11 +140,11 @@ Note that: in order to make this demo work correctly, you need to recreate a Kaf
 ```bash
 bin/kafka-topics.sh - create - bootstrap-server localhost:9092 - replication-factor 1 - partitions 1 - topic msql.history
 ```
-### Step 6 — Operation
+### Step 6 - Operation
 
 We are now ready to test Debezium MySQL Connector. For the best learning experience, I suggest that you open multiple Terminal (Say 5) and connect to your Debezium Server instance from each of these:
 
-#### Terminal 1 — Start Zookeeper Service
+#### Terminal 1 - Start Zookeeper Service
 ```bash
 bin/zookeeper-server-start.sh kafka/config/zookeeper.properties
 ```
