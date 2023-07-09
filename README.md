@@ -195,7 +195,14 @@ If we need to write our data to Google Bucket as a storage layer:
 I updated a small application, which you might reference in this repo.
 #### Noted that
 If you want to write data to HDFS, you might edit:
-```bash
+```python
+df = df  \
+    .writeStream \ 
+    .partitionBy("year", "month", "day", "hour") \
+    .format('parquet') \
+    .option('path', "gs://spark-bq-pipeline/data/"+topic+"/") \
+    .option('checkpointLocation', 'gs://spark-bq-pipeline/checkpoint/') \
+    .start()
 ```
 to
 ```bash
