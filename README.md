@@ -44,3 +44,27 @@ For more information, you can Logout of the MySQL shell and edit the MySQL confi
 ```bash
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
+And change these properties:
+```bash
+
+[mysqld]
+
+log_bin = ON
+log-bin = mysql-bin
+binlog_row_image = FULL
+binlog-format = ROW
+server-id = 223344
+
+binlog_rows_query_log_events = ON
+expire_logs_days = 90
+gtid_mode = ON
+enforce_gtid_consistency = ON
+performance_schema=ON
+```
+Then search for the row that contains bind-address and comment it out as follows and save the file. This will enable our MySQL service to be accessed from anywhere.
+
+```bash
+bind-address = 0.0.0.0
+port = 3306
+mysqlx-bind-address = 127.0.0.1
+```
