@@ -110,7 +110,7 @@ df = df  \
     .writeStream \ 
     .partitionBy("year", "month", "day", "hour") \
     .format('parquet') \
-    .option('path', 'gs://spark-bq-pipeline/data/"+topic+"/"') \
+    .option('path', "gs://spark-bq-pipeline/data/"+topic+"/") \
     .option('checkpointLocation', 'gs://spark-bq-pipeline/checkpoint/') \
     .start()
 
