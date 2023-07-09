@@ -1,12 +1,12 @@
 ## debezium-kafka-spark
 ##### Table of Contents  
-- [Step 1 - Resource requirements](#step-1-resource-requirements)
-- [Step 2 — Installing and Configuring MySQL Server](#step-2-installing-and-configuring-MySQL-Server)
-- [Step 3 — Installing Zookeeper](#step-3-Installing-Zookeeper)
-- [Step 4 — Installing Kafka](#step-4-installing-Kafka)
-- [Step 5 — Setting Up the Debezium MySQL Connector](#Step-5—Setting-Up-the-Debezium-MySQL-Connector)
-- [Step 6 - Operation](#step-6-operation)
-- [Step 7 - Using Apache Spark to read streaming data from Kafka](#Step-7-Using-Apache-Spark-to-read-streaming-data-from-Kafka)
+* [Step 1 - Resource requirements](#step-1-resource-requirements)
+* [Step 2 — Installing and Configuring MySQL Server](#step-2-installing-and-configuring-MySQL-Server)
+* [Step 3 — Installing Zookeeper](#step-3-Installing-Zookeeper)
+* [Step 4 — Installing Kafka](#step-4-installing-Kafka)
+* [Step 5 — Setting Up the Debezium MySQL Connector](#Step-5—Setting-Up-the-Debezium-MySQL-Connector)
+* [Step 6 - Operation](#step-6-operation)
+* [Step 7 - Using Apache Spark to read streaming data from Kafka](#Step-7-Using-Apache-Spark-to-read-streaming-data-from-Kafka)
 ### Step 1 - Resource requirements
 
 1. Login to VM Instance
