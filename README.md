@@ -215,4 +215,5 @@ df = df \
         .option("path", "hdfs://localhost:9000//spark-write-kafka/"+topic+"/") \
         .start()
 ```
-
+Thank you for reading.
+Happy learning!
