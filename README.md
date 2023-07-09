@@ -133,10 +133,6 @@ database.server.name=mysql-connector-02
 database.dbname=classicmodels
 database.history.kafka.bootstrap.servers=localhost:9092
 key.converter=org.apache.kafka.connect.json.JsonConverter
-key.converter.schemas.enable=false
-value.converter=org.apache.kafka.connect.json.JsonConverter
-value.converter.schemas.enable=false
-schemas.enable=false
 ```
 Note that: in order to make this demo work correctly, you need to recreate a Kafka topic before. Let’s say, for example, I create a “msql.history” topic.
 ```bash
@@ -171,3 +167,10 @@ kafka/bin/connect-standalone.sh kafka/config/connect-standalone.properties kafka
 curl -s localhost:8083/connectors/mysql-connector/status | jq
 ```
 #### Terminal 5 — Login to MySQL To Make Database Changes
+If we wish to filter the message of the metadata (e.g, we wish to capture data from ‘payload’, make the following two changes in the connect-debezium-mysql.properties and connect-standalone.properties file:
+```bash
+key.converter.schemas.enable=false
+value.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter.schemas.enable=false
+schemas.enable=false
+```
