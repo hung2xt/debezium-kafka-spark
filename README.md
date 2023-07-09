@@ -6,6 +6,7 @@
 - [Step 4 — Installing Kafka](#step-4-installing-Kafka)
 - [Step 5 — Setting Up the Debezium MySQL Connector](#Step-5—Setting-Up-the-Debezium-MySQL-Connector)
 - [Step 6 - Operation](#step-6-operation)
+- [Step 7 - Using Apache Spark to read streaming data from Kafka](#Step-7-Using-Apache-Spark-to-read-streaming-data-from-Kafka)
 ### Step 1 - Resource requirements
 
 1. Login to VM Instance
