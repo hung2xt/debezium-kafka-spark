@@ -180,4 +180,15 @@ In this step, we might use Spark to read our streaming data and process it if an
 AIRFLOW_CFG.job
 # AIRFLOW_CFG is dataset and job is simple a table
 ```
-To make these things work correctly, we might use _spark-sql-kafka _
+To make these things work correctly, we might use spark-sql-kafka package to submit our spark jobs.
+```bash
+--packages "org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0"
+```
+If we need to write our data to Google Bucket as storage layer:
+1. we have to use a gcs-connector:
+```bash
+--packages "org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0,com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.2.10"
+```
+2. A service account (json file) to have enough credentials in order to write data to GCS.
+
+
