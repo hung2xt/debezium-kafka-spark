@@ -18,4 +18,29 @@
 gcloud compute ssh - zone <your_zone_here> <your_vm_instance_name_here> -- project <project_id>
 ```
 
+### Step 2 — Installing and Configuring MySQL Server
 
+Connect to your MySQL-Server using ssh and follow the steps below to create a Source Database in MySQL for our purpose:
+
+1. Update Repo & install MySQL:
+```bash
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+2. Login to MySQL & create user ‘debezium’ with password ‘dbz’ 
+```sql
+sudo mysql -u root -p
+GRANT ALL PRIVILEGES ON *.* TO ‘debezium’@’%’ IDENTIFIED BY ‘dbz’;
+FLUSH PRIVILEGES;
+
+SHOW variables LIKE'log_bin';
+
+#If the query result is OFF, then you can enable it by:
+
+SET @@binlog_rows_query_log_events=ON;
+
+```
+For more information, you can Logout of the MySQL shell and edit the MySQL configuration file:
+```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
