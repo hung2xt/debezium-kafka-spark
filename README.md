@@ -98,7 +98,7 @@ mv kafka_2.12-2.6.3 kafka
 ```
 ### Step 5 — Setting Up the Debezium MySQL Connector
 
-Download Debezium Connector Jar files from Maven Central. I use stable version 1.8 for this demo.
+1. Download Debezium Connector Jar files from Maven Central. I use stable version 1.8 for this demo.
 
 ```shell
 cd kafka
@@ -108,3 +108,66 @@ tar -xvzf debezium-connector-mysql-1.8.0.Final-plugin.tar.gz
 #Debezium Connector acts as a Kafka Connector and Kafka stores its connector jars in a specific directory — /kafka/plugins. 
 mv debezium-connector-mysql-1.8.0.Final-plugin plugins
 ```
+2. Next, we make the required configurations on Kafka side
+We let Kafka know that its Connect Service should load our Debezium-MySQL-Connector from /kafka/plugins. For this let’s edit the connect-standalone.properties file (I also attached file in repo) in kafka/config directory. Remove the # from the last line:
+```shell
+nano kafka/config/connect-standalone.properties
+```
+3. Copy all jars files in /kafka/plugins to /kafka/libs in order to make things work correctly
+```bash
+cp -p /plugins/*.jar ./libs/
+```
+4. Configure Debezium MySQL connector
+Create a new properties file named connect-debezium-mysql.properties and paste the contents below into that file. Change highlighted properties to suit your sample data and Save the file in kafka/config directory.
+```bash
+name=mysql-connector-02
+connector.class=io.debezium.connector.mysql.MySqlConnector
+tasks.max=1
+database.hostname=localhost
+database.port=3306
+database.user=debezium
+database.password=dbz
+database.server.id=223344
+database.history.kafka.topic=msql.history
+database.server.name=mysql-connector-02
+database.dbname=classicmodels
+database.history.kafka.bootstrap.servers=localhost:9092
+key.converter=org.apache.kafka.connect.json.JsonConverter
+key.converter.schemas.enable=false
+value.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter.schemas.enable=false
+schemas.enable=false
+```
+Note that: in order to make this demo work correctly, you need to recreate a Kafka topic before. Let’s say, for example, I create a “msql.history” topic.
+```bash
+bin/kafka-topics.sh - create - bootstrap-server localhost:9092 - replication-factor 1 - partitions 1 - topic msql.history
+```
+### Step 6 — Operation
+
+We are now ready to test Debezium MySQL Connector. For the best learning experience, I suggest that you open multiple Terminal (Say 5) and connect to your Debezium Server instance from each of these:
+
+#### Terminal 1 — Start Zookeeper Service
+```bash
+bin/zookeeper-server-start.sh kafka/config/zookeeper.properties
+```
+#### Terminial 2 — Start Kafka Service
+```bash
+bin/kafka-server-start.sh kafka/config/server.properties
+```
+#### Terminal 3 — Monitor Topics and Messages
+```bash
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092 
+
+#Use following commands to Watch messages published in a topic:
+
+bin/kafka-console-consumer.sh — bootstrap-server localhost:9092 --topic <topic-name> --from-beginning
+```
+#### Terminal 4 — Start Kafka Connect Service with Debezium-MySQL-Connector
+```bash
+kafka/bin/connect-standalone.sh kafka/config/connect-standalone.properties kafka/config/connect-debezium-mysql.properties
+
+#You might check whether or not the connection is runing
+
+curl -s localhost:8083/connectors/mysql-connector/status | jq
+```
+#### Terminal 5 — Login to MySQL To Make Database Changes
