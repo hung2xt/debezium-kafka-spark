@@ -174,3 +174,10 @@ value.converter=org.apache.kafka.connect.json.JsonConverter
 value.converter.schemas.enable=false
 schemas.enable=false
 ```
+### Step 7 - Using Apache Spark to read streaming data from Kafka
+In this step, we might use Spark to read our streaming data and process it if any. Therefore, I use a small table from MySQL:
+```bash
+AIRFLOW_CFG.job
+# AIRFLOW_CFG is dataset and job is simple a table
+```
+To make these things work correctly, we might use _spark-sql-kafka _
