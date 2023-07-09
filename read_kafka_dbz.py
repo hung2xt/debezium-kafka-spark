@@ -12,7 +12,7 @@ import pyspark.sql.functions as F
 from pyspark.sql.types import *
 from pyspark.sql.functions import *
 
-
+topic =  "mysql-connector-02.AIRFLOW_CFG.job"
 # spark = SparkSession.builder \
 #         .appName("PythonSparkStreamingKafka") \
 #         .config("fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")\
@@ -62,7 +62,7 @@ df = spark \
             .format("kafka") \
             .option("kafka.bootstrap.servers", "localhost:9092") \
             .option("startingOffsets", "earliest") \
-            .option("subscribe", "mysql-connector-02.AIRFLOW_CFG.job") \
+            .option("subscribe", topic) \
             .load() \
             .selectExpr("CAST(value AS STRING) as value")
 
@@ -88,13 +88,29 @@ df = df.withColumn('start_date', to_timestamp(col('start_date')))\
          .withColumn('end_date', to_timestamp(col('end_date')))\
          .withColumn('latest_heartbeat', to_timestamp(col('latest_heartbeat')))\
          .withColumn('id', col('id').cast(IntegerType()))\
-    
+
+df = df(*columns,\
+        date_format(col("start_date"), 'yyyy').alias("year"), \
+        date_format(col("start_date"), 'MM').alias("month"), \
+        date_format(col("start_date"), 'dd').alias("day"), \
+        date_format(col("start_date"), 'HH').alias("hour"))
+
 df.printSchema()
 
+# df = df \
+#         .writeStream \
+#         .partitionBy("year", "month", "day", "hour") \
+#         .format("csv") \
+#         .option("checkpointLocation", "hdfs://localhost:9000//spark-write-kafka/"+topic+"/") \
+#         .trigger(processingTime="5 seconds") \
+#         .option("path", "hdfs://localhost:9000//spark-write-kafka/"+topic+"/") \
+#         .start()
+
 df = df  \
-    .writeStream \
+    .writeStream \ 
+    .partitionBy("year", "month", "day", "hour") \
     .format('parquet') \
-    .option('path', 'gs://spark-bq-pipeline/data/') \
+    .option('path', 'gs://spark-bq-pipeline/data/"+topic+"/"') \
     .option('checkpointLocation', 'gs://spark-bq-pipeline/checkpoint/') \
     .start()
 
