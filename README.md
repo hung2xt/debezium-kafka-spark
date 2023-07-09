@@ -205,6 +205,14 @@ df = df  \
     .start()
 ```
 to
-```bash
+```python
+df = df \
+        .writeStream \
+        .partitionBy("year", "month", "day", "hour") \
+        .format("parquet") \
+        .option("checkpointLocation", "hdfs://localhost:9000//spark-write-kafka/"+topic+"/") \
+        .trigger(processingTime="5 seconds") \
+        .option("path", "hdfs://localhost:9000//spark-write-kafka/"+topic+"/") \
+        .start()
 ```
 
