@@ -1,6 +1,6 @@
 ## debezium-kafka-spark
 ##### Table of Contents  
-[Step 1 - Resource requirements](#Step 1 - Resource requirements)
+[Step 1 - Resource requirements](#step-1-resource-requirements)
 ### Step 1 - Resource requirements
 
 1. Login to VM Instance
